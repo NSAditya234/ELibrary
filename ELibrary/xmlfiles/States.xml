@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<States>
+	<State>
+		<StateId>1</StateId>
+		<StateName>Andhra Pradesh</StateName>
+	</State>
+	<State>
+		<StateId>2</StateId>
+		<StateName>Arunachal Pradesh</StateName>
+	</State>
+	<State>
+		<StateId>3</StateId>
+		<StateName>Assam</StateName>
+	</State>
+	<State>
+		<StateId>4</StateId>
+		<StateName>Bihar</StateName>
+	</State>
+	<State>
+		<StateId>5</StateId>
+		<StateName>Chattisgarh</StateName>
+	</State>
+	<State>
+		<StateId>6</StateId>
+		<StateName>Rajasthan</StateName>
+	</State>
+	<State>
+		<StateId>7</StateId>
+		<StateName>Goa</StateName>
+	</State>
+	<State>
+		<StateId>8</StateId>
+		<StateName>Gujarat</StateName>
+	</State>
+	<State>
+		<StateId>9</StateId>
+		<StateName>Haryana</StateName>
+	</State>
+	<State>
+		<StateId>10</StateId>
+		<StateName>Himachal Pradesh</StateName>
+	</State>
+	<State>
+		<StateId>11</StateId>
+		<StateName>Jammu And Kashmir</StateName>
+	</State>
+	<State>
+		<StateId>12</StateId>
+		<StateName>Jharkhand</StateName>
+	</State>
+	<State>
+		<StateId>13</StateId>
+		<StateName>Karnataka</StateName>
+	</State>
+	<State>
+		<StateId>14</StateId>
+		<StateName>Kerala</StateName>
+	</State>
+	<State>
+		<StateId>15</StateId>
+		<StateName>Madhya Pradesh</StateName>
+	</State>
+	<State>
+		<StateId>16</StateId>
+		<StateName>Maharashtra</StateName>
+	</State>
+	<State>
+		<StateId>17</StateId>
+		<StateName>Manipur</StateName>
+	</State>
+	<State>
+		<StateId>18</StateId>
+		<StateName>Meghalaya</StateName>
+	</State>
+	<State>
+		<StateId>19</StateId>
+		<StateName>Mizoram</StateName>
+	</State>
+	<State>
+		<StateId>20</StateId>
+		<StateName>Nagaland</StateName>
+	</State>
+	<State>
+		<StateId>21</StateId>
+		<StateName>Odisha</StateName>
+	</State>
+	<State>
+		<StateId>22</StateId>
+		<StateName>Punjab</StateName>
+	</State>
+	<State>
+		<StateId>23</StateId>
+		<StateName>Rajasthan</StateName>
+	</State>
+	<State>
+		<StateId>24</StateId>
+		<StateName>Sikkim</StateName>
+	</State>
+	<State>
+		<StateId>25</StateId>
+		<StateName>Tamil Nadu</StateName>
+	</State>
+	<State>
+		<StateId>26</StateId>
+		<StateName>Telangana</StateName>
+	</State>
+	<State>
+		<StateId>27</StateId>
+		<StateName>Tripura</StateName>
+	</State>
+	<State>
+		<StateId>28</StateId>
+		<StateName>Uttar Pradesh</StateName>
+	</State>
+	<State>
+		<StateId>29</StateId>
+		<StateName>Uttarakhand</StateName>
+	</State>
+	<State>
+		<StateId>30</StateId>
+		<StateName>West Bengal</StateName>
+	</State>
+</States>
