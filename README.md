@@ -19,7 +19,7 @@ learning.
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
+- [@NSAditya234](https://www.github.com/NSAditya234)
 
 -- Authors: Aditya Narayan Soni
 ## 🛠 Skills
