@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="userprofile.aspx.cs" Inherits="ELibrary.userprofile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
@@ -39,6 +40,18 @@
                                 <hr />
                             </div>
                         </div>
+
+                        <!-- Alerts start -->
+                        <% if (Session["alertMessage"] != null)
+                            { %>
+                        <%=Session["alertType"] %>
+                        <%=Session["alertMessage"] %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-mdb-delay="3000">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <%=Session["divClose"] %>
+                        <% } %>
+                        <!-- Alerts end -->
 
                         <div class="row">
                             <div class="col-md-6">
@@ -170,13 +183,15 @@
                                 <div class="form-group">
                                     <label>New Password</label>
                                     <asp:TextBox CssClass="form-control" ID="tbNewPass" runat="server" placeholder="New Password" TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="New Password is required" ControlToValidate="tbNewPass" ForeColor="Red" Display="Dynamic" ValidationGroup="updatePass"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Confirm Password</label>
                                     <asp:TextBox CssClass="form-control" ID="tbConfirmPass" runat="server" placeholder="Confirm Password" TextMode="Password"></asp:TextBox>
-                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="New Password and Confirm Password should be same." ControlToValidate="tbConfirmPass" ControlToCompare="tbNewPass" Type="String" Operator="Equal" ForeColor="Red" ValidationGroup="updatePass"></asp:CompareValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Confirm Password Required" ForeColor="Red" ControlToValidate="tbConfirmPass" Display="Dynamic" ValidationGroup="updatePass"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="New password and confirm password should be same" ControlToValidate="tbConfirmPass" ControlToCompare="tbNewPass" Type="String" Operator="Equal" ForeColor="Red" ValidationGroup="updatePass" Display="Dynamic"></asp:CompareValidator>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +199,7 @@
                         <div class="row">
                             <div class="col-md-6 mx-auto">
                                 <div class="form-group">
-                                    <asp:Button CssClass="btn btn-info btn-block" ID="btnUpdatePassword" runat="server" Text="Update" OnClick="btnUpdatePassword_Click" ValidationGroup="updatePass"/>
+                                    <asp:Button CssClass="btn btn-info btn-block" ID="btnUpdatePassword" runat="server" Text="Update" OnClick="btnUpdatePassword_Click" ValidationGroup="updatePass" />
                                 </div>
                             </div>
                         </div>
@@ -222,26 +237,26 @@
                             <div class="col">
                                 <asp:GridView CssClass="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView1_RowDataBound">
                                     <Columns>
-                                        <asp:BoundField DataField="member_id" HeaderText="Member ID" ReadOnly="True" SortExpression="member_id" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="member_id" HeaderText="Member ID" ReadOnly="True" SortExpression="member_id">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="full_name" HeaderText="Full Name" ReadOnly="True" SortExpression="full_name" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="full_name" HeaderText="Full Name" ReadOnly="True" SortExpression="full_name">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="book_id" HeaderText="Book ID" ReadOnly="True" SortExpression="book_id" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="book_id" HeaderText="Book ID" ReadOnly="True" SortExpression="book_id">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="book_name" HeaderText="Book Name" ReadOnly="True" SortExpression="book_name" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="book_name" HeaderText="Book Name" ReadOnly="True" SortExpression="book_name">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="issue_date" HeaderText="Issue Date" ReadOnly="True" SortExpression="issue_date" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="issue_date" HeaderText="Issue Date" ReadOnly="True" SortExpression="issue_date">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="due_date" HeaderText="Due Date" ReadOnly="True" SortExpression="due_date" >
-                                        <ItemStyle Font-Bold="True" />
+                                        <asp:BoundField DataField="due_date" HeaderText="Due Date" ReadOnly="True" SortExpression="due_date">
+                                            <ItemStyle Font-Bold="True" />
                                         </asp:BoundField>
                                     </Columns>
-                                    
+
                                 </asp:GridView>
                             </div>
                         </div>

@@ -27,6 +27,7 @@
                         </center>
                     </div>
                 </div>
+                <hr />
                 <div class="row">
                     <div class="col-md-6">
                         <label>Member ID</label>
@@ -84,6 +85,19 @@
                         <asp:Button CssClass="btn btn-success btn-block" ID="btnReturn" runat="server" Text="Return" OnClick="btnReturn_Click" />
                     </div>
                 </div>
+
+                <!-- Alerts start -->
+                <% if (Session["alertMessage"] != null)
+                    { %>
+                <%=Session["alertType"] %>
+                <%=Session["alertMessage"] %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-mdb-delay="3000">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%=Session["divClose"] %>
+                <% } %>
+                <!-- Alerts end -->
+
             </div>
             <div class="col-md-7">
                 <div class="row">

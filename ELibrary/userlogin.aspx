@@ -31,6 +31,17 @@
                             </div>
                         </div>
 
+                        <%--Alert start--%>
+                        <% if(Session["alertMessage"] != null) { %>
+                        <%=Session["alertType"] %>
+                        <%=Session["alertMessage"] %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-mdb-delay="3000">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <%=Session["divClose"] %>
+                        <% } %>
+                        <%--Alert start--%>
+
                         <div class="row">
                             <div class="col-9">
                                 
@@ -45,7 +56,7 @@
                                     <asp:Button CssClass="btn btn-success btn-block btn-lg" ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
                                 </div>
                                 <div class="form-group">
-                                    <a href="usersignup.aspx"><input class="btn btn-info btn-block btn-lg" id="Button2" type="button" value="Sign Up" /></a>
+                                    <a href="usersignup.aspx" class="text-decoration-none text-reset"><input class="btn btn-info btn-block btn-lg" id="Button2" type="button" value="Sign Up" /></a>
                                 </div>
 
                             </div>

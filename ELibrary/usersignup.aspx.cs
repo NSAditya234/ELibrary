@@ -34,7 +34,11 @@ namespace ELibrary
             {
                 if (checkMemberExists())
                 {
-                    Response.Write("<script> alert('User is already exists. Please use different user id, email, contact no and sign up again.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong>User is already exist Please use different UserID, Email, Mobile...";
+                    Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
                 else
                 {
@@ -107,7 +111,12 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Write("<script> alert('SignUp successful. Go to user login to Login.'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong>Account Created. Go to user login and find your favorite books...";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
             }
             catch (Exception ex)
             {

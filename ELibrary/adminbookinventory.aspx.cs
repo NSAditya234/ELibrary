@@ -100,7 +100,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('invalid book id.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Invalid Book ID...";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
 
 
@@ -174,8 +178,13 @@ namespace ELibrary
                 cmd.ExecuteNonQuery();
                 con.Close();
                 gvBookInventory.DataBind();
-                Response.Write("<script> alert('Book added successfuly.'); </script>");
-                
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Book " + tbBookName.Text + " Details Added...";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
             }
             catch (Exception ex)
             {
@@ -266,7 +275,12 @@ namespace ELibrary
                     cmd.ExecuteNonQuery();
                     con.Close();
                     gvBookInventory.DataBind();
-                    Response.Write("<script> alert('Book Information Updated successfully.'); </script>");
+
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> Book " + tbBookName.Text + " Details Updated...";
+                    Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
 
                 }
                 catch (Exception ex)
@@ -304,7 +318,12 @@ namespace ELibrary
                     cmd.ExecuteNonQuery();
                     con.Close();
                     gvBookInventory.DataBind();
-                    Response.Write("<script> alert('Book Deleted Successfuly.'); </script>");
+
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> Book "+ tbBookName.Text +" Deleted...";
+                    Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
 
 
                 }

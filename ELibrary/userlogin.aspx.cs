@@ -44,7 +44,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script>alert('Invalid Id or Password Try again or Sign Up new account.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<stron> Failed! </strong>Invalid UserName Or Password (Sign Up if you don't have account)...";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             else

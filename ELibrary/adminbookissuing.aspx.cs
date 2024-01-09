@@ -31,7 +31,11 @@ namespace ELibrary
                 {
                     if (checkIfIssueEntryExist())
                     {
-                        Response.Write("<script> alert('This Member already has this book.'); </script>");
+                        /* alert start */
+                        Session["alertMessage"] = "<strong> Warning! </strong> "+tbMemberName.Text+" already has this ("+tbBookName.Text+") book...";
+                        Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                        Session["divClose"] = "</div>";
+                        /* alert end */
                     }
                     else
                     {
@@ -85,7 +89,12 @@ namespace ELibrary
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    Response.Write("<script> alert('Book returned successfuly.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> "+ tbMemberName.Text +" has been returned the book "+ tbBookName.Text +"...";
+                    Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
+
                     gvBookIssuingDetails.DataBind();
 
                 }
@@ -120,7 +129,13 @@ namespace ELibrary
                 cmd.ExecuteNonQuery();
 
                 con.Close();
-                Response.Write("<script> alert('Book Issued Successfuly.'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Book "+ tbBookName.Text +" is issued to "+ tbMemberName.Text +"...";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 gvBookIssuingDetails.DataBind();
 
             }

@@ -14,8 +14,8 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-title">
+                        <div class="row mt-4">
                             <div class="col">
                                 <center>
                                     <h4>Publisher Details</h4>
@@ -29,6 +29,9 @@
                                 </center>
                             </div>
                         </div>
+                    </div>
+                    <hr />
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Publisher ID</label>
@@ -62,6 +65,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Alerts start -->
+                <% if (Session["alertMessage"] != null)
+                    { %>
+                <%=Session["alertType"] %>
+                <%=Session["alertMessage"] %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-mdb-delay="3000">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%=Session["divClose"] %>
+                <% } %>
+                <!-- Alerts end -->
+
             </div>
             <div class="col-md-7">
                 <div class="card">

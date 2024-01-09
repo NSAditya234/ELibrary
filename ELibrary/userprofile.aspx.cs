@@ -149,7 +149,11 @@ namespace ELibrary
                     con.Close();
                     if (result > 0)
                     {
-                        Response.Write("<script> alert('Password Updated Successfuly.'); </script>");
+                        /* alert start */
+                        Session["alertMessage"] = "<strong> Success! </strong> Password Updated....";
+                        Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                        Session["divClose"] = "</div>";
+                        /* alert end */
                     }
                     else
                     {
@@ -158,7 +162,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Your old password is incorrect if you forgot then contact to authority.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Your old Password is incorrect if you forgot then contact to authority....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
 
             }
@@ -196,8 +204,12 @@ namespace ELibrary
                 if (result > 0)
                 {
                     Response.Write("<script> alert('Your details updated successfuly.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> Your Profile details Updated....";
+                    Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                     getUserPersonalDetails();
-                    //getUsersBookData();
                 }
                 else
                 {

@@ -36,7 +36,11 @@ namespace ELibrary
             {
                 if (checkAuthorExists())
                 {
-                    Response.Write("<script> alert('Author with same ID or Name is already exist. Try another id.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Warning! </strong> Author with same ID or Name is already exist. Try another id or name....";
+                    Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
                 else
                 {
@@ -59,7 +63,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Author with ID = " + tbAuthorId.Text.Trim() + " is not exists.') </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Author with ID = " + tbAuthorId.Text.Trim() + " does not exist....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             else
@@ -78,7 +86,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Author with ID = " + tbAuthorId.Text.Trim() + " is not exists.') </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Author with ID = " + tbAuthorId.Text.Trim() + " does not exist....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             else
@@ -108,7 +120,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Invalid Author id.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Invalid Author ID...";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
 
 
@@ -133,7 +149,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
-                Response.Write("<script> alert('Author Deleted Successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Author ("+tbAuthorName.Text+") Deleted...";
+                Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvAuthorDetails.DataBind();
             }
@@ -158,7 +180,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
-                Response.Write("<script> alert('Author Updated successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Author Details Updated...";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvAuthorDetails.DataBind();
             }
@@ -184,7 +212,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
-                Response.Write("<script> alert('Author Added successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Author Details Added...";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvAuthorDetails.DataBind();
             }

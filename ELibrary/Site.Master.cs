@@ -62,6 +62,7 @@ namespace ELibrary
                 lbBookIssuing.Visible = false;
                 lbMemberManagement.Visible = false;
             }
+            Session["alertMessage"] = null;
         }
 
         protected void lbViewBooks_Click(object sender, EventArgs e)

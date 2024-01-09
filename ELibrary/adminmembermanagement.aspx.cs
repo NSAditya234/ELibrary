@@ -54,7 +54,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert(' Invalid Id. No data found.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Invalid UserID. No data found...";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             catch (Exception ex)
@@ -83,7 +87,13 @@ namespace ELibrary
                     cmd.ExecuteNonQuery();
                     con.Close();
                     gvMembersList.DataBind();
-                    Response.Write("<script> alert('Member Deleted Successfuly.'); </script>");
+
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> Member with UserID ("+tbMemberId.Text+") Deleted...";
+                    Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
+
                     clearForm();
 
                 }
@@ -95,7 +105,11 @@ namespace ELibrary
             }
             else
             {
-                Response.Write("<script> alert('Invalid Member Id'); </script>");
+                /* alert start */
+                Session["alertMessage"] = "<strong> Failed! </strong> Invalid Member ID...";
+                Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
             }
         }
 
@@ -130,8 +144,12 @@ namespace ELibrary
                     cmd.ExecuteNonQuery();
                     con.Close();
                     gvMembersList.DataBind();
-                    Response.Write("<script> alert('Status Updated successfully.'); </script>");
 
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Success! </strong> Member with UserID (" + tbMemberId.Text + ") Status ("+status+") Updated...";
+                    Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
                 catch (Exception ex)
                 {

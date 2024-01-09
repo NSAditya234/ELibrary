@@ -36,7 +36,11 @@ namespace ELibrary
             {
                 if (checkPublisherExists())
                 {
-                    Response.Write("<script> alert('Publisher with same Id and Publisher Name is already exist. Try another id and name.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Warning! </strong> Publisher with same Id and Publisher Name is already exist. Try another id or name....";
+                    Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
                 else
                 {
@@ -59,7 +63,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Publisher with ID = " + tbPublisherId.Text.Trim() + " is not exists.') </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Publisher with ID = " + tbPublisherId.Text.Trim() + " does not exist....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             else
@@ -78,7 +86,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Publisher with ID = " + tbPublisherId.Text.Trim() + " is not exists.') </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Publisher with ID = " + tbPublisherId.Text.Trim() + " does not exist....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
             else
@@ -103,7 +115,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Write("<script> alert('publisher Added successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Publisher Details Added....";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvPublisherDetails.DataBind();
             }
@@ -128,7 +146,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
-                Response.Write("<script> alert('Publisher Updated successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Publisher Details Updated....";
+                Session["alertType"] = "<div class='alert alert-success alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvPublisherDetails.DataBind();
             }
@@ -152,7 +176,13 @@ namespace ELibrary
 
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
-                Response.Write("<script> alert('Publisher Deleted Successfully'); </script>");
+
+                /* alert start */
+                Session["alertMessage"] = "<strong> Success! </strong> Publisher ("+tbPublisherName.Text+") Deleted....";
+                Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show my-4' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+
                 clearForm();
                 gvPublisherDetails.DataBind();
             }
@@ -183,7 +213,11 @@ namespace ELibrary
                 }
                 else
                 {
-                    Response.Write("<script> alert('Invalid Publisher id.'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Invalid Publisher ID....";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show my-4' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
 
 
