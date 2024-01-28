@@ -31,7 +31,7 @@
                     <div class="col">
                         <center>
                             <h4>Book Details</h4>
-                            <img id="imageview" height="150" width="100" src="/book_inventory/books1.png" />
+                            <img id="imageview" height="150" width="100" src="<%=ViewState["BookImg"].ToString() %>" />
                         </center>
                     </div>
                 </div>

@@ -40,6 +40,7 @@ namespace ELibrary
                     ddlPublisherName.DataBind();
                     ddlPublisherName.Items.Insert(0, li);
                 }
+                ViewState["BookImg"] = "/book_inventory/books1.png";
             }
         }
 
@@ -73,7 +74,6 @@ namespace ELibrary
                     tbCurrentStock.Text = "" + Convert.ToInt32(dt.Rows[0]["current_stock"].ToString());
                     tbBookDescription.Text = dt.Rows[0]["book_description"].ToString();
                     tbIssuedBook.Text = "" + (Convert.ToInt32(dt.Rows[0]["actual_stock"].ToString()) - Convert.ToInt32(dt.Rows[0]["current_stock"].ToString()));
-
                     ddlLanguage.SelectedValue = dt.Rows[0]["language"].ToString();
                     ddlAuthorName.SelectedValue = dt.Rows[0]["author_id"].ToString();
                     ddlPublisherName.SelectedValue = dt.Rows[0]["publisher_id"].ToString();
@@ -94,6 +94,7 @@ namespace ELibrary
                     }
                     
                     global_filepath = dt.Rows[0]["book_img_link"].ToString();
+                    ViewState["BookImg"] = global_filepath;
                     global_actual_stock = Convert.ToInt32(dt.Rows[0]["actual_stock"].ToString());
                     global_current_stock = Convert.ToInt32(dt.Rows[0]["current_stock"].ToString());
                     global_issued_stock = global_actual_stock - global_current_stock;
@@ -119,16 +120,27 @@ namespace ELibrary
         {
             if(Page.IsValid)
             {
-                if (checkBookExists())
+                if (fuImage.HasFile)
                 {
-                    Response.Write("<script> alert('Book already exists try other book id or book name.'); </script>");
+                    if (checkBookExists())
+                    {
+                        Response.Write("<script> alert('Book already exists try other book id or book name.'); </script>");
+                    }
+                    else
+                    {
+                        if (bookImageExists())
+                        {
+                            addNewBook();
+                        }
+                    }
                 }
                 else
                 {
-
-                    addNewBook();
-                    //Response.Write("<script> alert('" + ddlPublisherName.SelectedItem.Value + "'); </script>");
-                    //Response.Write("<script> alert('" + ddlAuthorName.SelectedItem.Value + "'); </script>");
+                    /* alert start */
+                    Session["alertMessage"] = "<strong> Failed! </strong> Please Upload a image of your book";
+                    Session["alertType"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                    Session["divClose"] = "</div>";
+                    /* alert end */
                 }
             }
         }
@@ -144,10 +156,11 @@ namespace ELibrary
                 }
                 genres = genres.Remove(genres.Length - 2);
 
-                string filepath = "~/book_inventory/books1.png";
+                string filepath = "/book_inventory/books1.png";
                 string filename = Path.GetFileName(fuImage.PostedFile.FileName);
-                fuImage.SaveAs(Server.MapPath("~/book_inventory/" + filename));
-                filepath = "~/book_inventory/" + filename;
+                fuImage.SaveAs(Server.MapPath("/book_inventory/" + filename));
+                filepath = "/book_inventory/" + filename;
+                ViewState["BookImg"] = filepath;
 
                 SqlConnection con = new SqlConnection(cs);
                 if (con.State == ConnectionState.Closed)
@@ -196,7 +209,10 @@ namespace ELibrary
         {
             if (Page.IsValid)
             {
-                updateBookById();
+                if (bookImageExists())
+                {
+                    updateBookById();
+                }
             }
         }
 
@@ -235,7 +251,7 @@ namespace ELibrary
                     }
                     genres = genres.Remove(genres.Length - 2);
 
-                    string filepath = "~/book_inventory/books1.png";
+                    string filepath = "/book_inventory/books1.png";
                     string filename = Path.GetFileName(fuImage.PostedFile.FileName);
                     if (filename == "" || filename == null)
                     {
@@ -243,8 +259,15 @@ namespace ELibrary
                     }
                     else
                     {
-                        fuImage.SaveAs(Server.MapPath("book_inventory/" + filename));
-                        filepath = "~/book_inventory/" + filename;
+                        FileInfo file = new FileInfo(Server.MapPath(global_filepath));
+                        if(file.Exists)
+                        {
+                            file.Delete();
+                        }
+                        fuImage.SaveAs(Server.MapPath("/book_inventory/" + filename));
+                        filepath = "/book_inventory/" + filename;
+                        global_filepath = filepath;
+                        ViewState["BookImg"] = filepath;
                     }
 
 
@@ -314,6 +337,11 @@ namespace ELibrary
                     {
                         con.Open();
                     }
+                    FileInfo fileInfo = new FileInfo(Server.MapPath(global_filepath));
+                    if(fileInfo.Exists)
+                    {
+                        fileInfo.Delete();
+                    }
                     SqlCommand cmd = new SqlCommand("DELETE book_master_tbl WHERE book_id = '" + tbBookId.Text.Trim() + "'", con);
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -324,7 +352,7 @@ namespace ELibrary
                     Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
                     Session["divClose"] = "</div>";
                     /* alert end */
-
+                    ViewState["BookImg"] = "/book_inventory/books1.png";
 
                 }
                 catch (Exception ex)
@@ -374,6 +402,29 @@ namespace ELibrary
             }
         }
 
+        bool bookImageExists()
+        {
+            string filepath = "/book_inventory/books1.png";
+            string filename = Path.GetFileName(fuImage.PostedFile.FileName);
+            fuImage.SaveAs(Server.MapPath("/book_inventory/" + filename));
+            filepath = "/book_inventory/" + filename;
+            FileInfo file = new FileInfo(Server.MapPath(filepath));
+            ViewState["BookImg"] = filepath;
+            if(file.Exists)
+            {
+                /* alert start */
+                Session["alertMessage"] = "<strong> Failed! </strong> Image file already exists! Please change file name or Use different image...";
+                Session["alertType"] = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                Session["divClose"] = "</div>";
+                /* alert end */
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         protected void btnClearForm_Click(object sender, EventArgs e)
         {
             clearForm();
@@ -395,6 +446,7 @@ namespace ELibrary
             tbCurrentStock.Text = "";
             tbIssuedBook.Text = "";
             tbBookDescription.Text = "";
+            ViewState["BookImg"] = "/book_inventory/books1.png";
         }
 
     }

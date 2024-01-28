@@ -104,10 +104,6 @@ namespace ELibrary
             try
             {
                 SqlConnection con = new SqlConnection(cs);
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
 
                 SqlCommand cmd = new SqlCommand("SELECT * FROM author_master_tbl WHERE author_id = '" + tbAuthorId.Text.Trim() + "'", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -148,7 +144,7 @@ namespace ELibrary
                 SqlCommand cmd = new SqlCommand("DELETE FROM author_master_tbl WHERE author_id = '" + tbAuthorId.Text.Trim() + "'", con);
 
                 cmd.ExecuteNonQuery();
-                cmd.Clone();
+                con.Close();
 
                 /* alert start */
                 Session["alertMessage"] = "<strong> Success! </strong> Author ("+tbAuthorName.Text+") Deleted...";
@@ -179,7 +175,7 @@ namespace ELibrary
                 cmd.Parameters.AddWithValue("@author_name", tbAuthorName.Text.Trim());
 
                 cmd.ExecuteNonQuery();
-                cmd.Clone();
+                con.Close();
 
                 /* alert start */
                 Session["alertMessage"] = "<strong> Success! </strong> Author Details Updated...";
@@ -211,7 +207,7 @@ namespace ELibrary
                 cmd.Parameters.AddWithValue("@author_name", tbAuthorName.Text.Trim());
 
                 cmd.ExecuteNonQuery();
-                cmd.Clone();
+                con.Close();
 
                 /* alert start */
                 Session["alertMessage"] = "<strong> Success! </strong> Author Details Added...";
@@ -233,10 +229,6 @@ namespace ELibrary
             try
             {
                 SqlConnection con = new SqlConnection(cs);
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
 
                 SqlCommand cmd = new SqlCommand("SELECT * FROM author_master_tbl WHERE author_id = '" + tbAuthorId.Text.Trim() + "' OR author_name = '"+ tbAuthorName.Text.Trim() +"'", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

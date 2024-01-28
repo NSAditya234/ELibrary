@@ -145,7 +145,7 @@ namespace ELibrary
                 cmd.Parameters.AddWithValue("@publisher_name", tbPublisherName.Text.Trim());
 
                 cmd.ExecuteNonQuery();
-                cmd.Clone();
+                con.Close();
 
                 /* alert start */
                 Session["alertMessage"] = "<strong> Success! </strong> Publisher Details Updated....";
@@ -175,7 +175,7 @@ namespace ELibrary
                 SqlCommand cmd = new SqlCommand("DELETE FROM publisher_master_tbl WHERE publisher_id = '" + tbPublisherId.Text.Trim() + "'", con);
 
                 cmd.ExecuteNonQuery();
-                cmd.Clone();
+                con.Close();
 
                 /* alert start */
                 Session["alertMessage"] = "<strong> Success! </strong> Publisher ("+tbPublisherName.Text+") Deleted....";
@@ -197,10 +197,6 @@ namespace ELibrary
             try
             {
                 SqlConnection con = new SqlConnection(cs);
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
 
                 SqlCommand cmd = new SqlCommand("SELECT * FROM publisher_master_tbl WHERE publisher_id = '" + tbPublisherId.Text.Trim() + "'", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -233,10 +229,6 @@ namespace ELibrary
             try
             {
                 SqlConnection con = new SqlConnection(cs);
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
 
                 SqlCommand cmd = new SqlCommand("SELECT * FROM publisher_master_tbl WHERE publisher_id = '" + tbPublisherId.Text.Trim() + "' OR publisher_name='"+ tbPublisherName.Text.Trim() +"'", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
