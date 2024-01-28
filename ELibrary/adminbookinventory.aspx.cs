@@ -131,6 +131,7 @@ namespace ELibrary
                         if (bookImageExists())
                         {
                             addNewBook();
+                            clearForm();
                         }
                     }
                 }
@@ -267,9 +268,8 @@ namespace ELibrary
                         fuImage.SaveAs(Server.MapPath("/book_inventory/" + filename));
                         filepath = "/book_inventory/" + filename;
                         global_filepath = filepath;
-                        ViewState["BookImg"] = filepath;
                     }
-
+                    ViewState["BookImg"] = filepath;
 
                     SqlConnection con = new SqlConnection(cs);
                     if (con.State == ConnectionState.Closed)
@@ -323,6 +323,7 @@ namespace ELibrary
             if (Page.IsValid)
             {
                deleteBookById();
+               clearForm();
             }
         }
 
@@ -404,10 +405,8 @@ namespace ELibrary
 
         bool bookImageExists()
         {
-            string filepath = "/book_inventory/books1.png";
             string filename = Path.GetFileName(fuImage.PostedFile.FileName);
-            fuImage.SaveAs(Server.MapPath("/book_inventory/" + filename));
-            filepath = "/book_inventory/" + filename;
+            string filepath = "/book_inventory/" + filename;
             FileInfo file = new FileInfo(Server.MapPath(filepath));
             ViewState["BookImg"] = filepath;
             if(file.Exists)
